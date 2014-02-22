@@ -14,13 +14,25 @@
 		FFD8376918B899630096701C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8376818B899630096701C /* main.m */; };
 		FFD8376D18B899630096701C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8376C18B899630096701C /* AppDelegate.m */; };
 		FFD8377018B899630096701C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD8376E18B899630096701C /* Main.storyboard */; };
-		FFD8377318B899630096701C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8377218B899630096701C /* ViewController.m */; };
+		FFD8377318B899630096701C /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8377218B899630096701C /* FeedViewController.m */; };
 		FFD8377518B899630096701C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD8377418B899630096701C /* Images.xcassets */; };
 		FFD8377C18B899640096701C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD8377B18B899640096701C /* XCTest.framework */; };
 		FFD8377D18B899640096701C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD8375C18B899620096701C /* Foundation.framework */; };
 		FFD8377E18B899640096701C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD8376018B899630096701C /* UIKit.framework */; };
 		FFD8378618B899640096701C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD8378418B899640096701C /* InfoPlist.strings */; };
 		FFD8378818B899650096701C /* KaldataRSSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8378718B899650096701C /* KaldataRSSTests.m */; };
+		FFD8379318B89BD40096701C /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8379218B89BD40096701C /* Configuration.m */; };
+		FFD8379718B89CFE0096701C /* ConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8379618B89CFE0096701C /* ConnectionHelper.m */; };
+		FFD837E618B8A65F0096701C /* DataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837E518B8A65F0096701C /* DataStore.m */; };
+		FFD837E818B8A6810096701C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD837E718B8A6810096701C /* CoreData.framework */; };
+		FFD837EB18B8AA0D0096701C /* FileSystemHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837EA18B8AA0D0096701C /* FileSystemHelper.m */; };
+		FFD837EF18B8AE7E0096701C /* RssModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFD837ED18B8AE7E0096701C /* RssModel.xcdatamodeld */; };
+		FFD837F518B8D71A0096701C /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837F418B8D71A0096701C /* FeedManager.m */; };
+		FFD837F818B8E9880096701C /* FeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837F718B8E9880096701C /* FeedParser.m */; };
+		FFD837FE18B8F5930096701C /* FeedXMLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837FD18B8F5930096701C /* FeedXMLItem.m */; };
+		FFD8380418B91D760096701C /* FeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8380318B91D760096701C /* FeedItem.m */; };
+		FFD8380C18B92B940096701C /* dogeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD8380A18B92B940096701C /* dogeBg.png */; };
+		FFD8380D18B92B940096701C /* dogeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD8380B18B92B940096701C /* dogeBg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +57,34 @@
 		FFD8376B18B899630096701C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FFD8376C18B899630096701C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FFD8376F18B899630096701C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FFD8377118B899630096701C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FFD8377218B899630096701C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FFD8377118B899630096701C /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		FFD8377218B899630096701C /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		FFD8377418B899630096701C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FFD8377A18B899640096701C /* KaldataRSSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaldataRSSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD8377B18B899640096701C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		FFD8378318B899640096701C /* KaldataRSSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KaldataRSSTests-Info.plist"; sourceTree = "<group>"; };
 		FFD8378518B899640096701C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FFD8378718B899650096701C /* KaldataRSSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KaldataRSSTests.m; sourceTree = "<group>"; };
+		FFD8379118B89BD40096701C /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		FFD8379218B89BD40096701C /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
+		FFD8379518B89CFE0096701C /* ConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionHelper.h; sourceTree = "<group>"; };
+		FFD8379618B89CFE0096701C /* ConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionHelper.m; sourceTree = "<group>"; };
+		FFD837E418B8A65F0096701C /* DataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStore.h; sourceTree = "<group>"; };
+		FFD837E518B8A65F0096701C /* DataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStore.m; sourceTree = "<group>"; };
+		FFD837E718B8A6810096701C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FFD837E918B8AA0D0096701C /* FileSystemHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemHelper.h; sourceTree = "<group>"; };
+		FFD837EA18B8AA0D0096701C /* FileSystemHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemHelper.m; sourceTree = "<group>"; };
+		FFD837EE18B8AE7E0096701C /* RssModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RssModel.xcdatamodel; sourceTree = "<group>"; };
+		FFD837F318B8D71A0096701C /* FeedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedManager.h; sourceTree = "<group>"; };
+		FFD837F418B8D71A0096701C /* FeedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedManager.m; sourceTree = "<group>"; };
+		FFD837F618B8E9880096701C /* FeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedParser.h; sourceTree = "<group>"; };
+		FFD837F718B8E9880096701C /* FeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedParser.m; sourceTree = "<group>"; };
+		FFD837FC18B8F5930096701C /* FeedXMLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedXMLItem.h; sourceTree = "<group>"; };
+		FFD837FD18B8F5930096701C /* FeedXMLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedXMLItem.m; sourceTree = "<group>"; };
+		FFD8380218B91D760096701C /* FeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItem.h; sourceTree = "<group>"; };
+		FFD8380318B91D760096701C /* FeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItem.m; sourceTree = "<group>"; };
+		FFD8380A18B92B940096701C /* dogeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogeBg.png; sourceTree = "<group>"; };
+		FFD8380B18B92B940096701C /* dogeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dogeBg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFD837E818B8A6810096701C /* CoreData.framework in Frameworks */,
 				FFD8375F18B899630096701C /* CoreGraphics.framework in Frameworks */,
 				FFD8376118B899630096701C /* UIKit.framework in Frameworks */,
 				FFD8375D18B899620096701C /* Foundation.framework in Frameworks */,
@@ -82,6 +115,7 @@
 		FFD8375018B899620096701C = {
 			isa = PBXGroup;
 			children = (
+				FFD8380918B92B940096701C /* Images */,
 				FFD8376218B899630096701C /* KaldataRSS */,
 				FFD8378118B899640096701C /* KaldataRSSTests */,
 				FFD8375B18B899620096701C /* Frameworks */,
@@ -101,6 +135,7 @@
 		FFD8375B18B899620096701C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFD837E718B8A6810096701C /* CoreData.framework */,
 				FFD8375C18B899620096701C /* Foundation.framework */,
 				FFD8375E18B899630096701C /* CoreGraphics.framework */,
 				FFD8376018B899630096701C /* UIKit.framework */,
@@ -112,13 +147,20 @@
 		FFD8376218B899630096701C /* KaldataRSS */ = {
 			isa = PBXGroup;
 			children = (
+				FFD837EC18B8ADFC0096701C /* Models */,
+				FFD837E218B8A62E0096701C /* ViewControllers */,
+				FFD8379418B89CE80096701C /* Utilities */,
 				FFD8376B18B899630096701C /* AppDelegate.h */,
 				FFD8376C18B899630096701C /* AppDelegate.m */,
 				FFD8376E18B899630096701C /* Main.storyboard */,
-				FFD8377118B899630096701C /* ViewController.h */,
-				FFD8377218B899630096701C /* ViewController.m */,
 				FFD8377418B899630096701C /* Images.xcassets */,
 				FFD8376318B899630096701C /* Supporting Files */,
+				FFD8379118B89BD40096701C /* Configuration.h */,
+				FFD8379218B89BD40096701C /* Configuration.m */,
+				FFD837E418B8A65F0096701C /* DataStore.h */,
+				FFD837E518B8A65F0096701C /* DataStore.m */,
+				FFD837F318B8D71A0096701C /* FeedManager.h */,
+				FFD837F418B8D71A0096701C /* FeedManager.m */,
 			);
 			path = KaldataRSS;
 			sourceTree = "<group>";
@@ -150,6 +192,50 @@
 				FFD8378418B899640096701C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FFD8379418B89CE80096701C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8379518B89CFE0096701C /* ConnectionHelper.h */,
+				FFD8379618B89CFE0096701C /* ConnectionHelper.m */,
+				FFD837E918B8AA0D0096701C /* FileSystemHelper.h */,
+				FFD837EA18B8AA0D0096701C /* FileSystemHelper.m */,
+				FFD837F618B8E9880096701C /* FeedParser.h */,
+				FFD837F718B8E9880096701C /* FeedParser.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		FFD837E218B8A62E0096701C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8377118B899630096701C /* FeedViewController.h */,
+				FFD8377218B899630096701C /* FeedViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FFD837EC18B8ADFC0096701C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FFD837ED18B8AE7E0096701C /* RssModel.xcdatamodeld */,
+				FFD8380218B91D760096701C /* FeedItem.h */,
+				FFD8380318B91D760096701C /* FeedItem.m */,
+				FFD837FC18B8F5930096701C /* FeedXMLItem.h */,
+				FFD837FD18B8F5930096701C /* FeedXMLItem.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FFD8380918B92B940096701C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8380A18B92B940096701C /* dogeBg.png */,
+				FFD8380B18B92B940096701C /* dogeBg@2x.png */,
+			);
+			name = Images;
+			path = KaldataRSS/Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +315,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD8377518B899630096701C /* Images.xcassets in Resources */,
+				FFD8380C18B92B940096701C /* dogeBg.png in Resources */,
+				FFD8380D18B92B940096701C /* dogeBg@2x.png in Resources */,
 				FFD8376718B899630096701C /* InfoPlist.strings in Resources */,
 				FFD8377018B899630096701C /* Main.storyboard in Resources */,
 			);
@@ -249,9 +337,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD8377318B899630096701C /* ViewController.m in Sources */,
+				FFD8377318B899630096701C /* FeedViewController.m in Sources */,
 				FFD8376D18B899630096701C /* AppDelegate.m in Sources */,
+				FFD8379318B89BD40096701C /* Configuration.m in Sources */,
 				FFD8376918B899630096701C /* main.m in Sources */,
+				FFD8380418B91D760096701C /* FeedItem.m in Sources */,
+				FFD8379718B89CFE0096701C /* ConnectionHelper.m in Sources */,
+				FFD837E618B8A65F0096701C /* DataStore.m in Sources */,
+				FFD837EF18B8AE7E0096701C /* RssModel.xcdatamodeld in Sources */,
+				FFD837FE18B8F5930096701C /* FeedXMLItem.m in Sources */,
+				FFD837F818B8E9880096701C /* FeedParser.m in Sources */,
+				FFD837EB18B8AA0D0096701C /* FileSystemHelper.m in Sources */,
+				FFD837F518B8D71A0096701C /* FeedManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +557,7 @@
 				FFD8378D18B899660096701C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FFD8378E18B899660096701C /* Build configuration list for PBXNativeTarget "KaldataRSSTests" */ = {
 			isa = XCConfigurationList;
@@ -468,8 +566,23 @@
 				FFD8379018B899660096701C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FFD837ED18B8AE7E0096701C /* RssModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FFD837EE18B8AE7E0096701C /* RssModel.xcdatamodel */,
+			);
+			currentVersion = FFD837EE18B8AE7E0096701C /* RssModel.xcdatamodel */;
+			name = RssModel.xcdatamodeld;
+			path = ../RssModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FFD8375118B899620096701C /* Project object */;
 }
