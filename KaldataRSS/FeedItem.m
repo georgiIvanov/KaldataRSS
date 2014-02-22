@@ -11,10 +11,11 @@
 
 @implementation FeedItem
 
-@dynamic title;
 @dynamic feedDescription;
+@dynamic formattedDate;
 @dynamic link;
 @dynamic publishDate;
-@dynamic formattedDate;
+@dynamic title;
+@dynamic isRead;
 
 @end

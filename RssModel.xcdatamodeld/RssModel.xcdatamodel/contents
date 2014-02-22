@@ -3,11 +3,12 @@
     <entity name="FeedItem" representedClassName="FeedItem" syncable="YES">
         <attribute name="feedDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="formattedDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isRead" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="publishDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FeedItem" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="FeedItem" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

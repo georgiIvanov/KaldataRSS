@@ -12,10 +12,11 @@
 
 @interface FeedItem : NSManagedObject
 
-@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * feedDescription;
+@property (nonatomic, retain) NSString * formattedDate;
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSDate * publishDate;
-@property (nonatomic, retain) NSString * formattedDate;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * isRead;
 
 @end

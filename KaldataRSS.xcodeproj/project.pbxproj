@@ -30,9 +30,9 @@
 		FFD837F518B8D71A0096701C /* FeedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837F418B8D71A0096701C /* FeedManager.m */; };
 		FFD837F818B8E9880096701C /* FeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837F718B8E9880096701C /* FeedParser.m */; };
 		FFD837FE18B8F5930096701C /* FeedXMLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD837FD18B8F5930096701C /* FeedXMLItem.m */; };
-		FFD8380418B91D760096701C /* FeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8380318B91D760096701C /* FeedItem.m */; };
 		FFD8380C18B92B940096701C /* dogeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD8380A18B92B940096701C /* dogeBg.png */; };
 		FFD8380D18B92B940096701C /* dogeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD8380B18B92B940096701C /* dogeBg@2x.png */; };
+		FFD8381018B943A30096701C /* FeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8380F18B943A30096701C /* FeedItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,10 +81,10 @@
 		FFD837F718B8E9880096701C /* FeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedParser.m; sourceTree = "<group>"; };
 		FFD837FC18B8F5930096701C /* FeedXMLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedXMLItem.h; sourceTree = "<group>"; };
 		FFD837FD18B8F5930096701C /* FeedXMLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedXMLItem.m; sourceTree = "<group>"; };
-		FFD8380218B91D760096701C /* FeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItem.h; sourceTree = "<group>"; };
-		FFD8380318B91D760096701C /* FeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItem.m; sourceTree = "<group>"; };
 		FFD8380A18B92B940096701C /* dogeBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogeBg.png; sourceTree = "<group>"; };
 		FFD8380B18B92B940096701C /* dogeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dogeBg@2x.png"; sourceTree = "<group>"; };
+		FFD8380E18B943A30096701C /* FeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItem.h; sourceTree = "<group>"; };
+		FFD8380F18B943A30096701C /* FeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,9 +219,9 @@
 		FFD837EC18B8ADFC0096701C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FFD8380E18B943A30096701C /* FeedItem.h */,
+				FFD8380F18B943A30096701C /* FeedItem.m */,
 				FFD837ED18B8AE7E0096701C /* RssModel.xcdatamodeld */,
-				FFD8380218B91D760096701C /* FeedItem.h */,
-				FFD8380318B91D760096701C /* FeedItem.m */,
 				FFD837FC18B8F5930096701C /* FeedXMLItem.h */,
 				FFD837FD18B8F5930096701C /* FeedXMLItem.m */,
 			);
@@ -341,7 +341,7 @@
 				FFD8376D18B899630096701C /* AppDelegate.m in Sources */,
 				FFD8379318B89BD40096701C /* Configuration.m in Sources */,
 				FFD8376918B899630096701C /* main.m in Sources */,
-				FFD8380418B91D760096701C /* FeedItem.m in Sources */,
+				FFD8381018B943A30096701C /* FeedItem.m in Sources */,
 				FFD8379718B89CFE0096701C /* ConnectionHelper.m in Sources */,
 				FFD837E618B8A65F0096701C /* DataStore.m in Sources */,
 				FFD837EF18B8AE7E0096701C /* RssModel.xcdatamodeld in Sources */,

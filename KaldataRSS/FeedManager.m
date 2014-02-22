@@ -16,6 +16,7 @@
 @interface FeedManager()
 
 @property(nonatomic, strong) NSMutableDictionary* feed;
+@property(nonatomic, strong) NSMutableArray* sections;
 
 @end
 
@@ -64,7 +65,7 @@ static FeedManager* _feedManager;
     
     NSError* error;
     NSArray* fetched = [ds.context executeFetchRequest:fetch error:&error];
-    
+    self.sections = [[NSMutableArray alloc] init];
     for (FeedItem* item in fetched) {
         if([_feed objectForKey:item.formattedDate])
         {
@@ -76,10 +77,12 @@ static FeedManager* _feedManager;
             NSMutableArray* arr = [[NSMutableArray alloc] init];
             [arr addObject:item];
             [self.feed setObject:arr forKey:item.formattedDate];
+            [self.sections addObject:item.formattedDate];
         }
     }
     
     if([fetched count] > 0) {
+        
         return YES;
     }
     else{
@@ -96,6 +99,7 @@ static FeedManager* _feedManager;
         [self saveToLocalStorage:xmlFeedObjects];
         if([self getFeedFromLocalStorage])
         {
+            self.newEntries = [xmlFeedObjects count];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self notifyUpdateIsDone];
             });
@@ -117,6 +121,7 @@ static FeedManager* _feedManager;
         myFeed.link = item.link;
         myFeed.publishDate = item.publishDate;
         myFeed.formattedDate = item.formattedDate;
+        myFeed.isRead = NO;
     }
     
     if([xmlFeedObjects count] > 0 && [ds saveChanges])
@@ -139,6 +144,11 @@ static FeedManager* _feedManager;
 -(NSDictionary*)getFeed
 {
     return [[NSDictionary alloc]initWithDictionary:self.feed];
+}
+
+-(NSArray*)getSections
+{
+    return [[NSArray alloc] initWithArray:self.sections];
 }
 
 -(void)notifyUpdateIsDone
