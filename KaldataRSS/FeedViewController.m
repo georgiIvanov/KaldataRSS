@@ -10,6 +10,8 @@
 #import "ConnectionHelper.h"
 #import "FeedManager.h"
 #import "FeedItem.h"
+#import "UIControlsFactory.h"
+#import "FeedDetailsViewController.h"
 
 @interface FeedViewController ()
 <UITableViewDataSource, UITableViewDelegate>
@@ -27,6 +29,7 @@
 @implementation FeedViewController
 {
     FeedManager* _fm;
+    FeedItem* _selectedFeed;
 }
 
 - (void)viewDidLoad
@@ -61,13 +64,13 @@
     CGRect headerFrame = [UIScreen mainScreen].bounds;
     CGFloat inset = 20;
     CGFloat feedCountHeight = 110;
-    CGFloat hiloHeight = 40;
-    CGRect hiloFrame = CGRectMake(inset,
-                                  headerFrame.size.height - hiloHeight,
+    CGFloat textHeight = 40;
+    CGRect newEntriesFrame = CGRectMake(inset,
+                                  headerFrame.size.height - textHeight,
                                   headerFrame.size.width - (2 * inset),
-                                  hiloHeight);
+                                  textHeight);
     CGRect feedCount = CGRectMake(inset ,
-                                         headerFrame.size.height - (feedCountHeight + hiloHeight),
+                                         headerFrame.size.height - (feedCountHeight + textHeight),
                                          headerFrame.size.width - (2 * inset),
                                          feedCountHeight);
     
@@ -76,21 +79,13 @@
     header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = header;
     
-    self.feedCountLabel = [[UILabel alloc] initWithFrame:feedCount];
-    self.feedCountLabel.backgroundColor = [UIColor clearColor];
-    self.feedCountLabel.textColor = [UIColor whiteColor];
-    //temperatureLabel.text = @"0°";
-    self.feedCountLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:120];
+    NSString* helveticaLight = @"HelveticaNeue-Light";
+    self.feedCountLabel = [UIControlsFactory createLabel:feedCount fontSize:120 fontName:helveticaLight];
     [header addSubview:self.feedCountLabel];
     
-    UILabel *entriesTextLabel = [[UILabel alloc] initWithFrame:hiloFrame];
-    entriesTextLabel.backgroundColor = [UIColor clearColor];
-    entriesTextLabel.textColor = [UIColor whiteColor];
+    UILabel *entriesTextLabel = [UIControlsFactory createLabel:newEntriesFrame fontSize:30 fontName:helveticaLight];
     entriesTextLabel.text = @"New Entries";
-    entriesTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:28];
     [header addSubview:entriesTextLabel];
-
-
 }
 
 -(void)viewWillLayoutSubviews
@@ -102,6 +97,15 @@
     self.backgroundImageView.frame = bounds;
 //    self.blurredImageView.frame = bounds;
     self.tableView.frame = bounds;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:FeedDetailsSegue])
+    {
+        FeedDetailsViewController* vc = (FeedDetailsViewController*)segue.destinationViewController;
+        vc.feedItem = _selectedFeed;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,10 +151,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    NSString* key = [_sections objectAtIndex:indexPath.section];
-    NSArray* rowsInSection = [_feed valueForKey:key];
-    FeedItem* feedItem = rowsInSection[indexPath.item];
-    
+    FeedItem* feedItem = [self getFeedFromPathIndex:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     float alpha;
     if(feedItem.isRead)
@@ -169,5 +170,21 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _selectedFeed = [self getFeedFromPathIndex:indexPath];
+    
+    [self performSegueWithIdentifier:FeedDetailsSegue sender:self];
+    
+}
+
+-(FeedItem*)getFeedFromPathIndex:(NSIndexPath*)indexPath
+{
+    NSString* key = [_sections objectAtIndex:indexPath.section];
+    NSArray* rowsInSection = [_feed valueForKey:key];
+    FeedItem* feedItem = rowsInSection[indexPath.item];
+
+    return feedItem;
+}
 
 @end

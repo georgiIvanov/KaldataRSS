@@ -33,6 +33,9 @@
 		FFD8380C18B92B940096701C /* dogeBg.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD8380A18B92B940096701C /* dogeBg.png */; };
 		FFD8380D18B92B940096701C /* dogeBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD8380B18B92B940096701C /* dogeBg@2x.png */; };
 		FFD8381018B943A30096701C /* FeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8380F18B943A30096701C /* FeedItem.m */; };
+		FFD8381418B94BDB0096701C /* UIControlsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8381318B94BDB0096701C /* UIControlsFactory.m */; };
+		FFD8381718B950820096701C /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8381618B950820096701C /* NavigationController.m */; };
+		FFD8381A18B952E00096701C /* FeedDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD8381918B952E00096701C /* FeedDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +88,12 @@
 		FFD8380B18B92B940096701C /* dogeBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dogeBg@2x.png"; sourceTree = "<group>"; };
 		FFD8380E18B943A30096701C /* FeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItem.h; sourceTree = "<group>"; };
 		FFD8380F18B943A30096701C /* FeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItem.m; sourceTree = "<group>"; };
+		FFD8381218B94BDB0096701C /* UIControlsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIControlsFactory.h; sourceTree = "<group>"; };
+		FFD8381318B94BDB0096701C /* UIControlsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIControlsFactory.m; sourceTree = "<group>"; };
+		FFD8381518B950820096701C /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
+		FFD8381618B950820096701C /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		FFD8381818B952E00096701C /* FeedDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedDetailsViewController.h; sourceTree = "<group>"; };
+		FFD8381918B952E00096701C /* FeedDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +212,8 @@
 				FFD837EA18B8AA0D0096701C /* FileSystemHelper.m */,
 				FFD837F618B8E9880096701C /* FeedParser.h */,
 				FFD837F718B8E9880096701C /* FeedParser.m */,
+				FFD8381218B94BDB0096701C /* UIControlsFactory.h */,
+				FFD8381318B94BDB0096701C /* UIControlsFactory.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -212,6 +223,10 @@
 			children = (
 				FFD8377118B899630096701C /* FeedViewController.h */,
 				FFD8377218B899630096701C /* FeedViewController.m */,
+				FFD8381518B950820096701C /* NavigationController.h */,
+				FFD8381618B950820096701C /* NavigationController.m */,
+				FFD8381818B952E00096701C /* FeedDetailsViewController.h */,
+				FFD8381918B952E00096701C /* FeedDetailsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -337,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFD8381418B94BDB0096701C /* UIControlsFactory.m in Sources */,
 				FFD8377318B899630096701C /* FeedViewController.m in Sources */,
 				FFD8376D18B899630096701C /* AppDelegate.m in Sources */,
 				FFD8379318B89BD40096701C /* Configuration.m in Sources */,
@@ -349,6 +365,8 @@
 				FFD837F818B8E9880096701C /* FeedParser.m in Sources */,
 				FFD837EB18B8AA0D0096701C /* FileSystemHelper.m in Sources */,
 				FFD837F518B8D71A0096701C /* FeedManager.m in Sources */,
+				FFD8381718B950820096701C /* NavigationController.m in Sources */,
+				FFD8381A18B952E00096701C /* FeedDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

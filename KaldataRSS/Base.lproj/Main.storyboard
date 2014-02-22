@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cCs-Dx-qze">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="PSl-cd-Ldv">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="cCs-Dx-qze" customClass="NavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zk0-S1-EeA">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="gvc-Vd-VK7">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Tlq-fA-kBF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S38-aX-C9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-316" y="-201"/>
+        </scene>
         <!--Feed View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -17,9 +36,34 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Ivg-S3-l6C">
+                        <barButtonItem key="backBarButtonItem" title="Feeds" id="23o-kk-HPZ"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="xOw-W9-iCY" kind="push" identifier="feedDetailsSegue" id="lkf-Y8-2CH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Feed Details View Controller-->
+        <scene sceneID="I6g-iq-zei">
+            <objects>
+                <viewController id="xOw-W9-iCY" customClass="FeedDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mws-Z0-RFa"/>
+                        <viewControllerLayoutGuide type="bottom" id="3tg-Hr-CCy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zgy-6C-Qll">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mo7-9m-TJT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MzG-Xa-d96" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="569" y="-86"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
