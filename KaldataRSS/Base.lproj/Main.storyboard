@@ -21,7 +21,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S38-aX-C9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-316" y="-201"/>
+            <point key="canvasLocation" x="-610" y="-219"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="zJc-Jn-sbB">
@@ -32,15 +32,84 @@
                         <viewControllerLayoutGuide type="bottom" id="IRy-wR-1EA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mdG-Bu-NKL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="V1l-wr-hyO">
+                                <rect key="frame" x="0.0" y="251" width="320" height="229"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="229" id="38q-Ef-DCB"/>
+                                </constraints>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="eaq-Ne-2WC">
+                                <rect key="frame" x="0.0" y="58" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="23.02.2014" borderStyle="roundedRect" placeholder="d.MM.yyyy" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aka-LQ-ddh">
+                                <rect key="frame" x="146" y="149" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="22.02.2014" borderStyle="roundedRect" placeholder="d.MM.yyyy" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="yta-oB-EYh">
+                                <rect key="frame" x="146" y="111" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Before" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6PW-dc-Tr9">
+                                <rect key="frame" x="30" y="115" width="102" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date After" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Nn-9c-SvT">
+                                <rect key="frame" x="30" y="153" width="102" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKF-Oo-dcH">
+                                <rect key="frame" x="146" y="187" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="toggleDateSearch:" destination="yrr-my-GjH" eventType="valueChanged" id="OA0-gv-vr6"/>
+                                </connections>
+                            </switch>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="V1l-wr-hyO" firstAttribute="trailing" secondItem="eaq-Ne-2WC" secondAttribute="trailing" id="50v-gY-dQ2"/>
+                            <constraint firstAttribute="trailing" secondItem="V1l-wr-hyO" secondAttribute="trailing" id="9Wk-s6-8WS"/>
+                            <constraint firstItem="V1l-wr-hyO" firstAttribute="leading" secondItem="mdG-Bu-NKL" secondAttribute="leading" id="DOY-5R-aTh"/>
+                            <constraint firstAttribute="bottom" secondItem="V1l-wr-hyO" secondAttribute="bottom" id="Jro-wA-Eep"/>
+                            <constraint firstItem="V1l-wr-hyO" firstAttribute="leading" secondItem="eaq-Ne-2WC" secondAttribute="leading" id="Uh3-ao-K3Z"/>
+                            <constraint firstItem="eaq-Ne-2WC" firstAttribute="top" secondItem="mdG-Bu-NKL" secondAttribute="top" constant="58" id="jxN-Ne-Kso"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="iTb-vF-LJk"/>
+                    <navigationItem key="navigationItem" id="iTb-vF-LJk">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="jaL-ib-4Fz">
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="yrr-my-GjH" id="TbA-n5-pJG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="afterTextBox" destination="aka-LQ-ddh" id="cnN-bV-Ihj"/>
+                        <outlet property="beforeTextBox" destination="yta-oB-EYh" id="Pbz-G1-jei"/>
+                        <outlet property="dateSearchSwitch" destination="GKF-Oo-dcH" id="ehr-zb-37p"/>
+                        <outlet property="searchBar" destination="eaq-Ne-2WC" id="MlW-Jg-0ZO"/>
+                        <outlet property="tableView" destination="V1l-wr-hyO" id="a8b-6R-GcX"/>
+                        <segue destination="xOw-W9-iCY" kind="push" identifier="feedDetailsSegue" id="2nH-d8-naZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ew1-Ir-rhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="175" y="-792"/>
+            <point key="canvasLocation" x="162" y="-870"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -51,7 +120,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cfY-c5-L58"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -65,6 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-143" y="-59"/>
         </scene>
         <!--Feed Details View Controller-->
         <scene sceneID="I6g-iq-zei">
@@ -75,7 +145,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3tg-Hr-CCy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zgy-6C-Qll">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -99,7 +169,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jlp-nw-65z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="evX-d8-d4l">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -113,6 +183,9 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="2nH-d8-naZ"/>
+    </inferredMetricsTieBreakers>
 </document>

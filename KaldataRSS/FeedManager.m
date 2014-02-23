@@ -19,6 +19,7 @@
 @property(nonatomic, strong) NSMutableDictionary* feed;
 @property(nonatomic, strong) NSMutableArray* sections;
 @property(nonatomic, strong) NSArray* feedArray;
+@property(nonatomic, strong) NSArray* searchResult;
 
 @end
 
@@ -122,6 +123,67 @@ static FeedManager* _feedManager;
 
 }
 
+-(void)searchByTitle:(NSString*)title beforeDate:(NSDate*)beforeDate afterDate:(NSDate*)afterDate
+{
+     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+         
+         NSPredicate *datePredicate;
+         if(afterDate != nil && beforeDate != nil)
+         {
+             datePredicate = [NSPredicate predicateWithFormat:@"((publishDate <= %@) AND (publishDate >= %@))",afterDate, beforeDate];
+         }
+         else
+         {
+             if(afterDate)
+             {
+                 datePredicate = [NSPredicate predicateWithFormat:@"publishDate >= %@",afterDate];
+             }
+             else if(beforeDate)
+             {
+                 datePredicate = [NSPredicate predicateWithFormat:@"publishDate <= %@", beforeDate];
+             }
+         }
+         
+         NSPredicate* titlePredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", title];
+         NSPredicate* compoundPredicate;
+         if([title isEqualToString:@""] && datePredicate != nil)
+         {
+             compoundPredicate = datePredicate;
+         }
+         
+         if(datePredicate != nil && ![title isEqualToString:@""])
+         {
+          compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[titlePredicate, datePredicate]];
+         }
+         
+         if(datePredicate == nil)
+         {
+             compoundPredicate = titlePredicate;
+         }
+         
+         DataStore* ds = [DataStore dataStore];
+         NSFetchRequest* fetch = [[NSFetchRequest alloc] initWithEntityName:@"FeedItem"];
+         
+         
+         
+         [fetch setPredicate:compoundPredicate];
+         
+         
+         NSError* error;
+         self.searchResult = [ds.context executeFetchRequest:fetch error:&error];
+
+         if(error == nil)
+         {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self searchDone];
+             });
+         }
+
+     });
+    
+    
+}
+
 -(void)saveToLocalStorage:(NSArray*)xmlFeedObjects
 {
     DataStore* ds = [DataStore dataStore];
@@ -159,6 +221,11 @@ static FeedManager* _feedManager;
     
 }
 
+-(void)searchDone
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:SearchDone object:nil];
+}
+
 -(void)updateFeed
 {
     [self fetchFeedFromKaldata];
@@ -176,6 +243,11 @@ static FeedManager* _feedManager;
 -(NSDictionary*)getFeed
 {
     return [[NSDictionary alloc]initWithDictionary:self.feed];
+}
+
+-(NSArray *)getSearchResult
+{
+    return self.searchResult;
 }
 
 -(NSArray*)getFeedAsArray

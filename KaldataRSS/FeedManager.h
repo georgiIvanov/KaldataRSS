@@ -16,7 +16,10 @@
 -(NSDictionary*)getFeed;
 -(NSArray*)getSections;
 -(NSArray*)getFeedAsArray;
+-(NSArray*)getSearchResult;
 -(void)save;
+-(void)searchByTitle:(NSString*)title beforeDate:(NSDate*)beforeDate afterDate:(NSDate*)afterDate;
+
 
 @property(nonatomic) NSUInteger newEntries;
 

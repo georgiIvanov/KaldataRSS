@@ -15,7 +15,7 @@
 @interface FeedDetailsViewController()
 <UIScrollViewDelegate>
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) NSArray* feedItems;
+
 @property (nonatomic, strong) NSMutableArray *pageViews;
 
 @property (nonatomic, strong) UIImageView* backgroundImageView;
@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     _fm = [FeedManager feedManager];
-    self.feedItems = [_fm getFeedAsArray];
+    
     
     
     self.scrollView = [[UIScrollView alloc] init];

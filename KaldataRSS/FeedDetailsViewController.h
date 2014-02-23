@@ -12,5 +12,6 @@
 @interface FeedDetailsViewController : UIViewController
 
 @property(nonatomic, assign) NSUInteger feedIndex;
+@property (nonatomic, strong) NSArray* feedItems;
 
 @end

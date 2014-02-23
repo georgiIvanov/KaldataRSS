@@ -15,6 +15,7 @@ extern NSString* const FeedEntityName;
 // event names
 extern NSString* const FeedFetched;
 extern NSString* const FeedReadThroughDetails;
+extern NSString* const SearchDone;
 
 // segue names
 extern NSString* const FeedDetailsSegue;

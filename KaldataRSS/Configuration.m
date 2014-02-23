@@ -18,6 +18,7 @@ NSString* const FeedEntityName = @"FeedItem";
 // event names
 NSString* const FeedFetched = @"feedFetched";
 NSString* const FeedReadThroughDetails = @"frtd";
+NSString* const SearchDone = @"searchDone";
 
 // segue names
 NSString* const FeedDetailsSegue = @"feedDetailsSegue";

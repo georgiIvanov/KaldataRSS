@@ -149,7 +149,7 @@
             sectionsRows += [self tableView:self.tableView numberOfRowsInSection:i];
         }
         sectionsRows += _indexPathOfSelectedItem.row;
-        
+        vc.feedItems = [_fm getFeedAsArray];
         
         vc.feedIndex = sectionsRows;
     }
