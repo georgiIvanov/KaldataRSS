@@ -50,13 +50,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(feedUpdated)
                                                  name:FeedFetched object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(decrementNewFeedCounter) name:FeedReadThroughDetails object:nil];
     _fm = [FeedManager feedManager];
     [_fm updateFeed];
     
     
     self.screenHeight = [UIScreen mainScreen].bounds.size.height;
 
-    UIImage *background = [UIImage imageNamed:@"dogeBg"];
+    UIImage *background = [UIImage imageNamed:BackgroundImage];
     
     self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -74,9 +75,10 @@
     [self.view addSubview:self.tableView];
     
     CGRect headerFrame = [UIScreen mainScreen].bounds;
-    CGFloat inset = 20;
-    CGFloat feedCountHeight = 110;
-    CGFloat textHeight = 40;
+    static CGFloat inset = 20;
+    static CGFloat feedCountHeight = 110;
+    static CGFloat textHeight = 40;
+    static CGFloat searchBtnSide = 60;
     CGRect newEntriesFrame = CGRectMake(inset,
                                   headerFrame.size.height - textHeight,
                                   headerFrame.size.width - (2 * inset),
@@ -97,6 +99,14 @@
     UILabel *entriesTextLabel = [UIControlsFactory createLabel:newEntriesFrame fontSize:30 fontName:HelveticaLight];
     entriesTextLabel.text = @"New Entries";
     [header addSubview:entriesTextLabel];
+    
+    UIButton* searchButton = [[UIButton alloc] initWithFrame:CGRectMake(feedCount.origin.x, feedCount.origin.y - feedCountHeight, searchBtnSide, feedCount.size.height + textHeight)];
+    [searchButton addTarget:self
+                  action:@selector(goToSearch)
+        forControlEvents:UIControlEventTouchUpInside];
+        UIImage* btnImage = [UIImage imageNamed:SearchImage];
+    [searchButton setImage:btnImage forState:UIControlStateNormal];
+    [header addSubview:searchButton];
 }
 
 -(void)viewWillLayoutSubviews
@@ -115,12 +125,16 @@
     if(!_firstLoad)
     {
         [_fm updateFeed];
-    
     }
     else
     {
         _firstLoad = NO;
     }
+}
+
+-(void)goToSearch
+{
+    [self performSegueWithIdentifier:SearchSegue sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -135,6 +149,7 @@
             sectionsRows += [self tableView:self.tableView numberOfRowsInSection:i];
         }
         sectionsRows += _indexPathOfSelectedItem.row;
+        
         
         vc.feedIndex = sectionsRows;
     }
@@ -155,7 +170,7 @@
 
 -(void)updateNewFeedCounter:(NSUInteger)count
 {
-    self.theNewFeedCount = count;
+    self.theNewFeedCount += count;
     self.theNewFeedCountLabel.text = [[NSString alloc] initWithFormat:@"%d", self.theNewFeedCount];
 }
 
@@ -216,14 +231,19 @@
         item.isRead = @1;
         [_fm save];
         [self.tableView reloadData];
-        if(self.theNewFeedCount > 0)
-        {
-            [self updateNewFeedCounter:self.theNewFeedCount - 1];
-        }
+        [self decrementNewFeedCounter];
     }
     
     [self performSegueWithIdentifier:FeedDetailsSegue sender:self];
     
+}
+
+-(void)decrementNewFeedCounter
+{
+    if(self.theNewFeedCount > 0)
+    {
+        [self updateNewFeedCounter:-1];
+    }
 }
 
 -(FeedItem*)getFeedFromPathIndex:(NSIndexPath*)indexPath

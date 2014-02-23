@@ -14,10 +14,12 @@ extern NSString* const FeedEntityName;
 
 // event names
 extern NSString* const FeedFetched;
+extern NSString* const FeedReadThroughDetails;
 
 // segue names
 extern NSString* const FeedDetailsSegue;
 extern NSString* const WebViewSegue;
+extern NSString* const SearchSegue;
 
 // error texts
 extern NSString* const NetworkProblem;
@@ -29,3 +31,7 @@ extern NSString* const HelveticaUltraLight;
 
 // ui text
 extern NSString* const ViewOnlineText;
+
+// image names
+extern NSString* const BackgroundImage;
+extern NSString* const SearchImage;

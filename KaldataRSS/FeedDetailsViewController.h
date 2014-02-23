@@ -13,5 +13,4 @@
 
 @property(nonatomic, assign) NSUInteger feedIndex;
 
-
 @end

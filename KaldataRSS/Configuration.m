@@ -17,10 +17,12 @@ NSString* const FeedEntityName = @"FeedItem";
 
 // event names
 NSString* const FeedFetched = @"feedFetched";
+NSString* const FeedReadThroughDetails = @"frtd";
 
 // segue names
 NSString* const FeedDetailsSegue = @"feedDetailsSegue";
 NSString* const WebViewSegue = @"webViewSegue";
+NSString* const SearchSegue = @"searchSegue";
 
 
 // error texts
@@ -34,3 +36,7 @@ NSString* const HelveticaUltraLight = @"HelveticaNeue-UltraLight";
 
 // ui text
 NSString* const ViewOnlineText = @"View Full Article";
+
+// image names
+NSString* const BackgroundImage = @"dogeBg";
+NSString* const SearchImage = @"searchIcon";

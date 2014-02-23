@@ -48,7 +48,7 @@
     }
     
     
-    UIImage *background = [UIImage imageNamed:@"dogeBg"];
+    UIImage *background = [UIImage imageNamed:BackgroundImage];
     self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.backgroundImageView];
@@ -128,7 +128,7 @@
         detailsView.backgroundColor = [UIColor colorWithWhite:0 alpha:alpha];
         CGRect detailBounds = detailsView.bounds;
 
-        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(detailBounds.origin.x + headerInset, detailBounds.origin.y, detailBounds.size.width, headerHeight)];
+        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(detailBounds.origin.x + headerInset, detailBounds.origin.y, detailBounds.size.width - headerInset, headerHeight)];
         headerLabel.font = [UIFont fontWithName:HelveticaLight size:20];
         headerLabel.text = item.title;
         headerLabel.numberOfLines = 3;
@@ -147,7 +147,7 @@
         viewInWeb.frame = CGRectMake(detailBounds.size.width / 2 - buttonWidth / 2 , detailBounds.size.height - buttonInset, buttonWidth, buttonInset);
         [viewInWeb addTarget:self
                    action:@selector(goToWebView)
-         forControlEvents:UIControlEventTouchDown];
+         forControlEvents:UIControlEventTouchUpInside];
         [viewInWeb setTitle:ViewOnlineText forState:UIControlStateNormal];
         
         [detailsView addSubview:headerLabel];
@@ -176,14 +176,12 @@
     CGFloat pageWidth = self.scrollView.frame.size.width;
     NSInteger page = (NSInteger)floor((self.scrollView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
     
-    if(page >= self.feedItems.count)
-    {
-        page =  self.feedItems.count - 1;
-    }
+    
     _currentFeed = self.feedItems[page];
     if(!_currentFeed.isRead)
     {
         _currentFeed.isRead = @1;
+        [[NSNotificationCenter defaultCenter] postNotificationName:FeedReadThroughDetails object:nil];
         [_fm save];
     }
     

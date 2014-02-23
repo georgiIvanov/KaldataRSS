@@ -27,7 +27,7 @@
     NSURLRequest* req = [[NSURLRequest alloc] initWithURL:url];
     [self.webView loadRequest:req];
     
-    UIImage *background = [UIImage imageNamed:@"dogeBg"];
+    UIImage *background = [UIImage imageNamed:BackgroundImage];
     self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.backgroundImageView];
