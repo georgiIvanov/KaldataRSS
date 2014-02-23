@@ -7,10 +7,12 @@
 //
 
 #import "FeedDetailsViewController.h"
+#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
 
 @interface FeedDetailsViewController()
 
 @property (nonatomic, strong) UIImageView* backgroundImageView;
+@property (nonatomic, strong) UIImageView *blurredImageView;
 
 @end
 
@@ -22,9 +24,13 @@
     UIImage *background = [UIImage imageNamed:@"dogeBg"];
     self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    
-
     [self.view addSubview:self.backgroundImageView];
+    
+    self.blurredImageView = [[UIImageView alloc] init];
+    self.blurredImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.blurredImageView.alpha = 0.7;
+    [self.blurredImageView setImageToBlur:background blurRadius:1 completionBlock:nil];
+    [self.view addSubview:self.blurredImageView];
 
 }
 
@@ -35,7 +41,7 @@
     CGRect bounds = self.view.bounds;
     
     self.backgroundImageView.frame = bounds;
-    //    self.blurredImageView.frame = bounds;
+    self.blurredImageView.frame = bounds;
 
 }
 @end

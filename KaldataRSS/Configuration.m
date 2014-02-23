@@ -20,3 +20,8 @@ NSString* const FeedFetched = @"feedFetched";
 
 // segue names
 NSString* const FeedDetailsSegue = @"feedDetailsSegue";
+
+// error texts
+NSString* const NetworkProblem = @"There was a problem fetching feed.";
+
+NSString* const CouldNotGetLocalData = @"There was a problem fetching local data.";

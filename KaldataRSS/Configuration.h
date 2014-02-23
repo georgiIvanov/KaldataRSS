@@ -17,3 +17,7 @@ extern NSString* const FeedFetched;
 
 // segue names
 extern NSString* const FeedDetailsSegue;
+
+// error texts
+extern NSString* const NetworkProblem;
+extern NSString* const CouldNotGetLocalData;

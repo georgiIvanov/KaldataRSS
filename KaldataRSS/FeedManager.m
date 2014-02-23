@@ -12,6 +12,7 @@
 #import "FeedXMLItem.h"
 #import "DataStore.h"
 #import "FeedParser.h"
+#import <TSMessage.h>
 
 @interface FeedManager()
 
@@ -81,22 +82,28 @@ static FeedManager* _feedManager;
         }
     }
     
-    if([fetched count] > 0) {
+    if(error) {
         
-        return YES;
+        return NO;
     }
     else{
-        return NO;
+        return YES;
     }
 }
 
 -(void)fetchFeedFromKaldata
 {
     [[ConnectionHelper connection] getRSSAsync:KaldataRSSUrl completion:	^(NSData* data, NSError* error){
-        
         NSArray* xmlFeedObjects = [_feedParser parseData:data afterDate:_mostRecentFeedDate];
+        if(error == nil)
+        {
+            [self saveToLocalStorage:xmlFeedObjects];
+        }
+        else
+        {
+            [self reportError:NetworkProblem];
+        }
         
-        [self saveToLocalStorage:xmlFeedObjects];
         if([self getFeedFromLocalStorage])
         {
             self.newEntries = [xmlFeedObjects count];
@@ -104,6 +111,11 @@ static FeedManager* _feedManager;
                 [self notifyUpdateIsDone];
             });
         }
+        else
+        {
+            [self reportError:CouldNotGetLocalData];
+        }
+
     }];
 
 }
@@ -135,6 +147,15 @@ static FeedManager* _feedManager;
     }
 }
 
+-(void)reportError:(NSString*)subtitle
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [TSMessage showNotificationWithTitle:@"Error"
+                                    subtitle:subtitle
+                                        type:TSMessageNotificationTypeError];
+    });
+    
+}
 
 -(void)updateFeed
 {

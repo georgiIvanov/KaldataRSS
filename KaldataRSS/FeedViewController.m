@@ -12,17 +12,22 @@
 #import "FeedItem.h"
 #import "UIControlsFactory.h"
 #import "FeedDetailsViewController.h"
+#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
+
 
 @interface FeedViewController ()
-<UITableViewDataSource, UITableViewDelegate>
+<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UILabel *theNewFeedCountLabel;
+@property (nonatomic, assign) NSUInteger theNewFeedCount;
+@property (nonatomic, strong) UIImageView* backgroundImageView;
+@property (nonatomic, strong) UIImageView *blurredImageView;
+@property (nonatomic, assign) CGFloat screenHeight;
+
 
 @property (nonatomic, strong) NSDictionary* feed;
 @property (nonatomic, strong) NSArray* sections;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) UILabel *feedCountLabel;
-@property (nonatomic, strong) UIImageView* backgroundImageView;
-@property (nonatomic, assign) CGFloat screenHeight;
-
 
 @end
 
@@ -54,8 +59,14 @@
     
     self.backgroundImageView = [[UIImageView alloc] initWithImage:background];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
-    
     [self.view addSubview:self.backgroundImageView];
+    
+    self.blurredImageView = [[UIImageView alloc] init];
+    self.blurredImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.blurredImageView.alpha = 0;
+    [self.blurredImageView setImageToBlur:background blurRadius:10 completionBlock:nil];
+    [self.view addSubview:self.blurredImageView];
+
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.2];
@@ -80,8 +91,8 @@
     self.tableView.tableHeaderView = header;
     
     NSString* helveticaLight = @"HelveticaNeue-Light";
-    self.feedCountLabel = [UIControlsFactory createLabel:feedCount fontSize:120 fontName:helveticaLight];
-    [header addSubview:self.feedCountLabel];
+    self.theNewFeedCountLabel = [UIControlsFactory createLabel:feedCount fontSize:120 fontName:helveticaLight];
+    [header addSubview:self.theNewFeedCountLabel];
     
     UILabel *entriesTextLabel = [UIControlsFactory createLabel:newEntriesFrame fontSize:30 fontName:helveticaLight];
     entriesTextLabel.text = @"New Entries";
@@ -95,7 +106,7 @@
     CGRect bounds = self.view.bounds;
     
     self.backgroundImageView.frame = bounds;
-//    self.blurredImageView.frame = bounds;
+    self.blurredImageView.frame = bounds;
     self.tableView.frame = bounds;
 }
 
@@ -118,9 +129,13 @@
     _feed = [_fm getFeed];
     _sections = [_fm getSections];
     [self.tableView reloadData];
-    
-    self.feedCountLabel.text = [[NSString alloc] initWithFormat:@"%d", [_fm newEntries]];
-    NSLog(@"FU");
+    [self updateNewFeedCounter:[_fm newEntries]];
+}
+
+-(void)updateNewFeedCounter:(NSUInteger)count
+{
+    self.theNewFeedCount = count;
+    self.theNewFeedCountLabel.text = [[NSString alloc] initWithFormat:@"%d", self.theNewFeedCount];
 }
 
 #pragma mark - UITableViewDelegate
@@ -179,6 +194,10 @@
         _selectedFeed.isRead = @1;
         [_fm save];
         [self.tableView reloadData];
+        if(self.theNewFeedCount > 0)
+        {
+            [self updateNewFeedCounter:self.theNewFeedCount - 1];
+        }
     }
     
     [self performSegueWithIdentifier:FeedDetailsSegue sender:self];
@@ -192,6 +211,16 @@
     FeedItem* feedItem = rowsInSection[indexPath.item];
 
     return feedItem;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
+    CGFloat height = scrollView.bounds.size.height;
+    CGFloat position = MAX(scrollView.contentOffset.y, 0.0);
+    CGFloat percent = MIN(position / height, 1.0);
+    self.blurredImageView.alpha = percent;
 }
 
 @end
