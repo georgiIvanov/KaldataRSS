@@ -141,6 +141,15 @@ static FeedManager* _feedManager;
     [self fetchFeedFromKaldata];
 }
 
+-(void)save
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        DataStore* ds = [DataStore dataStore];
+        [ds saveChanges];
+    });
+
+}
+
 -(NSDictionary*)getFeed
 {
     return [[NSDictionary alloc]initWithDictionary:self.feed];

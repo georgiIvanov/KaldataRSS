@@ -174,6 +174,13 @@
 {
     _selectedFeed = [self getFeedFromPathIndex:indexPath];
     
+    if(!_selectedFeed.isRead)
+    {
+        _selectedFeed.isRead = @1;
+        [_fm save];
+        [self.tableView reloadData];
+    }
+    
     [self performSegueWithIdentifier:FeedDetailsSegue sender:self];
     
 }

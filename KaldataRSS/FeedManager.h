@@ -15,6 +15,8 @@
 -(void)updateFeed;
 -(NSDictionary*)getFeed;
 -(NSArray*)getSections;
+-(void)save;
+
 @property(nonatomic) NSUInteger newEntries;
 
 @end
