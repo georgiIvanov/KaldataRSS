@@ -18,6 +18,7 @@
 
 @property(nonatomic, strong) NSMutableDictionary* feed;
 @property(nonatomic, strong) NSMutableArray* sections;
+@property(nonatomic, strong) NSArray* feedArray;
 
 @end
 
@@ -65,9 +66,9 @@ static FeedManager* _feedManager;
     fetch.sortDescriptors = @[sortDesc];
     
     NSError* error;
-    NSArray* fetched = [ds.context executeFetchRequest:fetch error:&error];
+    self.feedArray = [ds.context executeFetchRequest:fetch error:&error];
     self.sections = [[NSMutableArray alloc] init];
-    for (FeedItem* item in fetched) {
+    for (FeedItem* item in self.feedArray) {
         if([_feed objectForKey:item.formattedDate])
         {
             NSMutableArray* arr = [_feed objectForKey:item.formattedDate];
@@ -174,6 +175,11 @@ static FeedManager* _feedManager;
 -(NSDictionary*)getFeed
 {
     return [[NSDictionary alloc]initWithDictionary:self.feed];
+}
+
+-(NSArray*)getFeedAsArray
+{
+    return self.feedArray;
 }
 
 -(NSArray*)getSections

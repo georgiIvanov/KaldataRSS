@@ -34,7 +34,7 @@
 @implementation FeedViewController
 {
     FeedManager* _fm;
-    FeedItem* _selectedFeed;
+    NSIndexPath* _indexPathOfSelectedItem;
 }
 
 - (void)viewDidLoad
@@ -115,7 +115,15 @@
     if([segue.identifier isEqualToString:FeedDetailsSegue])
     {
         FeedDetailsViewController* vc = (FeedDetailsViewController*)segue.destinationViewController;
-        vc.feedItem = _selectedFeed;
+        
+        NSUInteger sectionsRows = 0;
+        for (int i = 0; i < _indexPathOfSelectedItem.section; i++)
+        {
+            sectionsRows += [self tableView:self.tableView numberOfRowsInSection:i];
+        }
+        sectionsRows += _indexPathOfSelectedItem.row;
+        
+        vc.feedIndex = sectionsRows;
     }
 }
 
@@ -187,11 +195,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectedFeed = [self getFeedFromPathIndex:indexPath];
+    _indexPathOfSelectedItem = indexPath;
+    FeedItem* item = [self getFeedFromPathIndex:indexPath];
     
-    if(!_selectedFeed.isRead)
+    if(!item.isRead)
     {
-        _selectedFeed.isRead = @1;
+        item.isRead = @1;
         [_fm save];
         [self.tableView reloadData];
         if(self.theNewFeedCount > 0)
