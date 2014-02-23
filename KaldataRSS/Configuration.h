@@ -17,7 +17,15 @@ extern NSString* const FeedFetched;
 
 // segue names
 extern NSString* const FeedDetailsSegue;
+extern NSString* const WebViewSegue;
 
 // error texts
 extern NSString* const NetworkProblem;
 extern NSString* const CouldNotGetLocalData;
+
+// fonts
+extern NSString* const HelveticaLight;
+extern NSString* const HelveticaUltraLight;
+
+// ui text
+extern NSString* const ViewOnlineText;

@@ -35,12 +35,13 @@
 {
     FeedManager* _fm;
     NSIndexPath* _indexPathOfSelectedItem;
+    BOOL _firstLoad;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    _firstLoad = YES;
     _feed = [[NSDictionary alloc] init];
     self.tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
@@ -90,11 +91,10 @@
     header.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = header;
     
-    NSString* helveticaLight = @"HelveticaNeue-Light";
-    self.theNewFeedCountLabel = [UIControlsFactory createLabel:feedCount fontSize:120 fontName:helveticaLight];
+    self.theNewFeedCountLabel = [UIControlsFactory createLabel:feedCount fontSize:120 fontName:HelveticaLight];
     [header addSubview:self.theNewFeedCountLabel];
     
-    UILabel *entriesTextLabel = [UIControlsFactory createLabel:newEntriesFrame fontSize:30 fontName:helveticaLight];
+    UILabel *entriesTextLabel = [UIControlsFactory createLabel:newEntriesFrame fontSize:30 fontName:HelveticaLight];
     entriesTextLabel.text = @"New Entries";
     [header addSubview:entriesTextLabel];
 }
@@ -108,6 +108,19 @@
     self.backgroundImageView.frame = bounds;
     self.blurredImageView.frame = bounds;
     self.tableView.frame = bounds;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if(!_firstLoad)
+    {
+        [_fm updateFeed];
+    
+    }
+    else
+    {
+        _firstLoad = NO;
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

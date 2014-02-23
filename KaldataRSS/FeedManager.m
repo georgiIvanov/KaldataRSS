@@ -50,7 +50,7 @@ static FeedManager* _feedManager;
         _mostRecentFeedDate = [defaults valueForKey:LastFetchedFeedDate];
         
     }
-    _feed = [[NSMutableDictionary alloc] init];
+//    _feed = [[NSMutableDictionary alloc] init];
     _feedParser = [[FeedParser alloc]init];
     
     return self;
@@ -67,6 +67,7 @@ static FeedManager* _feedManager;
     
     NSError* error;
     self.feedArray = [ds.context executeFetchRequest:fetch error:&error];
+    self.feed = [[NSMutableDictionary alloc] init];
     self.sections = [[NSMutableArray alloc] init];
     for (FeedItem* item in self.feedArray) {
         if([_feed objectForKey:item.formattedDate])

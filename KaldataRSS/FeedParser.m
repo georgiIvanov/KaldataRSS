@@ -34,7 +34,6 @@
 {
     self = [super init];
     
-    _currentParseBatch = [[NSMutableArray alloc] init];
     _currentParsedCharacterData = [[NSMutableString alloc] init];
     _dateFormatter = [[NSDateFormatter alloc] init];
     _dateForUser = [[NSDateFormatter alloc] init];
@@ -47,6 +46,7 @@
 -(NSArray*)parseData:(NSData*)data afterDate:(NSDate*) date
 {
     _mostRecentFeedDate = date;
+    _currentParseBatch = [[NSMutableArray alloc] init];
     NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data];
     
     [parser setDelegate:self];

@@ -9,6 +9,8 @@
 #import "FeedDetailsViewController.h"
 #import <LBBlurredImage/UIImageView+LBBlurredImage.h>
 #import "FeedManager.h"
+#import "UIControlsFactory.h"
+#import "WebViewController.h"
 
 @interface FeedDetailsViewController()
 <UIScrollViewDelegate>
@@ -24,6 +26,8 @@
 @implementation FeedDetailsViewController
 {
     FeedManager* _fm;
+    FeedItem* _currentFeed;
+    CGPoint _offsetBeforeSegue;
 }
 
 -(void)viewDidLoad
@@ -58,31 +62,48 @@
     [self.view addSubview:self.scrollView];
 }
 
--(void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     CGRect bounds = self.view.bounds;
     
     self.backgroundImageView.frame = bounds;
     self.blurredImageView.frame = bounds;
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    CGRect screenBounds = [UIScreen mainScreen].bounds;
-    self.scrollView.frame = CGRectMake(screenBounds.origin.x, screenBounds.origin.y + 60, screenBounds.size.width, screenBounds.size.height - 100);
+    self.scrollView.frame = CGRectMake(bounds.origin.x, bounds.origin.y + 60, bounds.size.width, bounds.size.height - 100);
     CGSize pagesScrollViewSize = self.scrollView.frame.size;
     self.scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * self.feedItems.count, pagesScrollViewSize.height);
     
-    CGFloat pageWidth = self.scrollView.frame.size.width;
-    CGPoint newOffset = CGPointMake(self.scrollView.bounds.origin.x + (pageWidth *  _feedIndex), self.scrollView.bounds.origin.y);
-    self.scrollView.contentOffset = newOffset;
+    CGFloat pageWidth = bounds.size.width;
     
+    if(_offsetBeforeSegue.x == 0)
+    {
+        CGPoint newOffset = CGPointMake(self.scrollView.bounds.origin.x + (pageWidth *  _feedIndex), self.scrollView.bounds.origin.y);
+        self.scrollView.contentOffset = newOffset;
+    }
+    else
+    {
+        self.scrollView.contentOffset = _offsetBeforeSegue;
+        _offsetBeforeSegue.x = 0;
+    }
     [self loadVisiblePages];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:WebViewSegue])
+    {
+        WebViewController* vc = (WebViewController*)segue.destinationViewController;
+        vc.link = _currentFeed.link;
+        _offsetBeforeSegue = self.scrollView.contentOffset;
+    }
+}
+
+-(void)goToWebView
+{
+    [self performSegueWithIdentifier:WebViewSegue sender:self];
+}
+
+#pragma mark - ScrollRelated
 
 - (void)loadPage:(NSInteger)page {
     if (page < 0 || page >= self.feedItems.count) {
@@ -90,19 +111,51 @@
     }
     UIView *pageView = [self.pageViews objectAtIndex:page];
     if ((NSNull*)pageView == [NSNull null]) {
-
+        
+        
+        static CGFloat headerHeight = 80;
+        static CGFloat headerInset = 10;
+        static CGFloat buttonInset = 70;
+        static CGFloat buttonWidth = 110;
+        static CGFloat alpha = 0.6;
+        
+        FeedItem* item = self.feedItems[page];
         CGRect frame = self.scrollView.bounds;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0.0f;
         
-        FeedItem* item = self.feedItems[page];
-        UITextView *newPageView = [[UITextView alloc] initWithFrame:frame];
-        newPageView.contentMode = UIViewContentModeScaleAspectFit;
-        newPageView.frame = frame;
-        newPageView.text = item.feedDescription;
-        [self.scrollView addSubview:newPageView];
+        UIView *detailsView = [[UIView alloc] initWithFrame:frame];
+        detailsView.backgroundColor = [UIColor colorWithWhite:0 alpha:alpha];
+        CGRect detailBounds = detailsView.bounds;
+
+        UILabel* headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(detailBounds.origin.x + headerInset, detailBounds.origin.y, detailBounds.size.width, headerHeight)];
+        headerLabel.font = [UIFont fontWithName:HelveticaLight size:20];
+        headerLabel.text = item.title;
+        headerLabel.numberOfLines = 3;
+        headerLabel.textColor = [UIColor whiteColor];
+        
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(detailBounds.origin.x, detailBounds.origin.y + headerHeight, detailBounds.size.width, detailBounds.size.height)];
+        textView.backgroundColor = [UIColor clearColor];
+        
+        textView.font = [UIFont fontWithName:HelveticaLight size:16];
+        textView.contentMode = UIViewContentModeScaleAspectFit;
+        textView.text = item.feedDescription;
+        textView.textColor = [UIColor whiteColor];
+        textView.editable = NO;
+        
+        UIButton *viewInWeb = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        viewInWeb.frame = CGRectMake(detailBounds.size.width / 2 - buttonWidth / 2 , detailBounds.size.height - buttonInset, buttonWidth, buttonInset);
+        [viewInWeb addTarget:self
+                   action:@selector(goToWebView)
+         forControlEvents:UIControlEventTouchDown];
+        [viewInWeb setTitle:ViewOnlineText forState:UIControlStateNormal];
+        
+        [detailsView addSubview:headerLabel];
+        [detailsView addSubview:textView];
+        [detailsView addSubview:viewInWeb];
+        [self.scrollView addSubview:detailsView];
   
-        [self.pageViews replaceObjectAtIndex:page withObject:newPageView];
+        [self.pageViews replaceObjectAtIndex:page withObject:detailsView];
     }
 }
 
@@ -123,6 +176,16 @@
     CGFloat pageWidth = self.scrollView.frame.size.width;
     NSInteger page = (NSInteger)floor((self.scrollView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
     
+    if(page >= self.feedItems.count)
+    {
+        page =  self.feedItems.count - 1;
+    }
+    _currentFeed = self.feedItems[page];
+    if(!_currentFeed.isRead)
+    {
+        _currentFeed.isRead = @1;
+        [_fm save];
+    }
     
     NSInteger firstPage = page - 1;
     NSInteger lastPage = page + 1;

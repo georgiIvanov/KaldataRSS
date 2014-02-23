@@ -20,8 +20,17 @@ NSString* const FeedFetched = @"feedFetched";
 
 // segue names
 NSString* const FeedDetailsSegue = @"feedDetailsSegue";
+NSString* const WebViewSegue = @"webViewSegue";
+
 
 // error texts
 NSString* const NetworkProblem = @"There was a problem fetching feed.";
 
 NSString* const CouldNotGetLocalData = @"There was a problem fetching local data.";
+
+// fonts
+NSString* const HelveticaLight = @"HelveticaNeue-Light";
+NSString* const HelveticaUltraLight = @"HelveticaNeue-UltraLight";
+
+// ui text
+NSString* const ViewOnlineText = @"View Full Article";

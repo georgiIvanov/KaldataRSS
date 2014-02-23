@@ -59,11 +59,35 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Mo7-9m-TJT"/>
+                    <navigationItem key="navigationItem" id="Mo7-9m-TJT">
+                        <barButtonItem key="backBarButtonItem" title="Details" id="Udx-te-WuD"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="cXD-Ly-NXw" kind="push" identifier="webViewSegue" id="Ucl-ZV-DYz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MzG-Xa-d96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="569" y="-86"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="ML4-Cf-3BI">
+            <objects>
+                <viewController id="cXD-Ly-NXw" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YJN-gZ-L5f"/>
+                        <viewControllerLayoutGuide type="bottom" id="jlp-nw-65z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="evX-d8-d4l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="82V-xh-Ym7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ez-l9-f1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1059" y="-106"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
